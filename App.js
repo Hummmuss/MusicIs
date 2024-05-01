@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import MusicPlayerScreen from './src/screens/MusicPlayerScreen';
+import AllTracksScreen from './src/screens/AllTracksScreen';
+import AllPlaylistsScreen from './src/screens/AllPlaylistsScreen';
+import Home from "./src/screens/Home";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const Stack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={Home} options={{ title: 'Домашняя страница' }} />
+                <Stack.Screen name="MusicPlayer" component={MusicPlayerScreen} options={{ title: 'Музыкальный плеер' }} />
+                <Stack.Screen name="AllTracks" component={AllTracksScreen} options={{ title: 'Все треки' }} />
+                <Stack.Screen name="AllPlaylists" component={AllPlaylistsScreen} options={{ title: 'Все плейлисты' }} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
+
+export default App;
